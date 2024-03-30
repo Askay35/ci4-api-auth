@@ -8,9 +8,8 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
 
-class JWTAuth implements FilterInterface
-{
-
+class JWTGuest implements FilterInterface
+{ 
     use ApiResponseTrait;
 
     private $response;

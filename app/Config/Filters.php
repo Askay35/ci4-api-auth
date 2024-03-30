@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\AllowCORS;
 use App\Filters\JWTAuth;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -26,6 +27,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth' => JWTAuth::class,
+        'cors'=>AllowCORS::class
     ];
 
     /**
@@ -41,6 +43,7 @@ class Filters extends BaseConfig
             // 'invalidchars',
         ],
         'after' => [
+            // 'cors',
             'toolbar',
             // 'honeypot',
             // 'secureheaders',
@@ -67,5 +70,6 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+    ];
 }

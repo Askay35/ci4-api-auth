@@ -9,6 +9,7 @@ class Auth extends BaseController
 {
     use ApiResponseTrait;
 
+
     public function register()
     {
         $register_data = request()->getPost();
@@ -71,7 +72,7 @@ class Auth extends BaseController
         $login_data = request()->getPost();
 
         if (!$this->validateData($login_data, 'login')) {
-            return $this->respondErrors($this->validator->getErrors());
+            return $this->respondErrors($this->validator->getErrors())->setHeader('Access-Control-Allow-Origin','*');
         }
         $user_model = new UserModel;
         $user = $user_model->where('email', $login_data['email'])->first();
@@ -79,12 +80,11 @@ class Auth extends BaseController
             return $this->respondErrors(['email' => 'Пользователь с таким email не зарегистрирован']);
         }
         if (!password_verify($login_data['password'], $user['password'])) {
-            return $this->respondErrors(['password' => 'Неверный пароль']);
+            return $this->respondErrors(['password' => 'Неверный пароль'])->setHeader('Access-Control-Allow-Origin','*');
         }
 
         helper('jwt');
         $token = getSignedJWTForUser($user['id']);
-
-        return $this->respondSuccess(['token' => $token]);
+        return $this->respondSuccess(['token' => $token])->setHeader('Access-Control-Allow-Origin','*');
     }
 }

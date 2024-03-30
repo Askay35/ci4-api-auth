@@ -12,7 +12,7 @@ trait ApiResponseTrait {
      *
      * @return ResponseInterface
      */
-    protected function respondSuccess($data = null)
+    protected function respondSuccess($data = [])
     {
         return $this->response->setJSON(array_merge(['data'=>$data],['success' => true]));
     }
@@ -25,7 +25,7 @@ trait ApiResponseTrait {
      *
      * @return ResponseInterface
      */
-    protected function respondFail($data = null)
+    protected function respondFail($data = [])
     {
         return $this->response->setJSON(array_merge($data,['success' => false]));
     }
@@ -36,7 +36,7 @@ trait ApiResponseTrait {
      *
      * @return ResponseInterface
      */
-    protected function respondErrors($errors = null)
+    protected function respondErrors($errors = [])
     {
         return $this->respondFail(['errors'=>$errors]);
     }
