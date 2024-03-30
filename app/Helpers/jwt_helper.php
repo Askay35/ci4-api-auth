@@ -44,7 +44,7 @@ function getSignedJWTForUser(string $id)
     $issuedAtTime = time();
     $tokenTimeToLive = Services::getTokenLiveTime();
     $tokenExpiration = $issuedAtTime + $tokenTimeToLive;    // expire time in seconds
-    $notBeforeClaim = $issuedAtTime + 5;                   // not before in seconds
+    $notBeforeClaim = $issuedAtTime + 1;                   // not before in seconds
     $payload = [
         "iss" => "Issuer of the JWT", // this can be the servername. Example: https://domain.com
         "aud" => "Audience that the JWT",

@@ -85,6 +85,6 @@ class Auth extends BaseController
 
         helper('jwt');
         $token = getSignedJWTForUser($user['id']);
-        return $this->respondSuccess(['token' => $token])->setHeader('Access-Control-Allow-Origin','*');
+        return $this->respondSuccess(['token' => $token]);
     }
 }
